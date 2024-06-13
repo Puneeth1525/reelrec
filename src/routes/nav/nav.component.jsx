@@ -9,10 +9,10 @@ const Nav = () => {
       <div className="nav">
         <ul className="ul">
           <li className="li">
-            <Link className="a" to="/browse">Browse</Link>
+            <Link className="a active" to="/">Browse</Link>
           </li>
           <li className="li">
-            <Link className="a active" to="/">Home</Link>
+            <Link className="a" to="/home">Home</Link>
           </li>
           <li className="li">
             <NavSearch width="350%" placeholder="Search for movies..." />

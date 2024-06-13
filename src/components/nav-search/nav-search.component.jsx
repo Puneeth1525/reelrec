@@ -85,6 +85,9 @@ class NavSearch extends Component {
               <div style={{ fontWeight: "bold", color: "white" }}>
                 {option.original_title}
               </div>
+              <span style={{color: "white" }}>
+                Release date: {option.release_date}
+              </span>
               <div style={{ fontSize: "13px", color: "#ffffff" }}>
                 {option.overview}
               </div>
