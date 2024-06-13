@@ -1,38 +1,181 @@
-.App {
-  text-align: center;
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+} */
+
+.container {
+  max-width: 100%; /* Ensure container takes the full width */
+  max-height: 10px;
+  margin: 0 auto;
+  /* padding: 20px; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+nav ul li a.active {
+  color: #f5c518;
+}
+
+/* nav ul li a.active::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #f5c518;
+  bottom: -5px;
+  left: 0;
+} */
+
+/* nav ul li a.glow {
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #f5c518, 0 0 20px #f5c518, 0 0 25px #f5c518, 0 0 30px #f5c518, 0 0 35px #f5c518;
+} */
+
+.movie-banner {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.movie-banner img {
+  width: 100%; /* Ensure image spans the full width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.movie-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.movie-info h1 {
+  font-size: 48px; /* Adjust font size for the movie title */
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.play-button,
+.wishlist-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.play-button {
+  background-color: #f5c518;
+  color: #000;
+}
+
+.wishlist-button {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.movie-details {
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.movie-meta {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #ccc;
+}
+
+.movie-description {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.movie-genre,
+.movie-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.genre-tag,
+.rating-tag {
+  background-color: #333;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.cast-section {
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.cast-section h2 {
+  margin-bottom: 20px;
+  font-size: 24px; /* Adjust font size for the cast section title */
+}
+
+.cast-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cast-member {
+  text-align: center;
+  flex: 0 0 100px; /* Ensures fixed size for cast members */
+}
+
+.cast-member img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px; /* Rounded corners */
+  margin-bottom: 10px;
+}
+
+.cast-member p {
+  margin-bottom: 5px;
+}
+
+.see-all {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.see-all a {
+  text-decoration: none;
+  color: #f5c518;
+  font-weight: bold;
+  font-size: 18px;
 }
