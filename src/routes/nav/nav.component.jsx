@@ -12,9 +12,6 @@ const Nav = () => {
             <Link className="a active" to="/">Browse</Link>
           </li>
           <li className="li">
-            <Link className="a" to="/home">Home</Link>
-          </li>
-          <li className="li">
             <NavSearch width="350%" placeholder="Search for movies..." />
           </li>
         </ul>
