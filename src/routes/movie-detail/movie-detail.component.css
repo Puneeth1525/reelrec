@@ -1,0 +1,127 @@
+
+
+.container {
+    max-width: 100%; /* Ensure container takes the full width */
+    max-height: 10px;
+    margin: 0 auto;
+    /* padding: 20px; */
+  }
+  
+  .movie-banner {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .movie-banner img {
+    width: 100%; /* Ensure image spans the full width */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  .movie-info {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .movie-info h1 {
+    font-size: 48px; /* Adjust font size for the movie title */
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  
+  .play-button,
+  .wishlist-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .play-button {
+    background-color: #f5c518;
+    color: #000;
+  }
+  
+  .wishlist-button {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+  }
+  
+  .movie-details {
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  
+  .movie-meta {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #ccc;
+  }
+  
+  .movie-description {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+  
+  .movie-genre,
+  .movie-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .genre-tag,
+  .rating-tag {
+    background-color: #333;
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .cast-section {
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  
+  .cast-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px; /* Adjust font size for the cast section title */
+  }
+  
+  .cast-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .cast-member {
+    text-align: center;
+    flex: 0 0 100px; /* Ensures fixed size for cast members */
+  }
+  
+  .cast-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px; /* Rounded corners */
+    margin-bottom: 10px;
+  }
+  
+  .cast-member p {
+    margin-bottom: 5px;
+  }
+  
+  .see-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .see-all a {
+    text-decoration: none;
+    color: #f5c518;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
