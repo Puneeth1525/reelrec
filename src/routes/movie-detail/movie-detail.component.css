@@ -14,8 +14,10 @@
   
   .movie-banner img {
     width: 100%; /* Ensure image spans the full width */
-    height: auto; /* Maintain aspect ratio */
   }
+  /* .banner-image {
+    height: 20%;
+  } */
   
   .movie-info {
     position: absolute;
@@ -94,6 +96,7 @@
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    margin-bottom: 2%;
   }
   
   .cast-member {
@@ -124,4 +127,10 @@
     font-weight: bold;
     font-size: 18px;
   }
+
+  .country-dropdown {
+    width: 25%;
+    margin-bottom: 2%;
+  }
+  
   
