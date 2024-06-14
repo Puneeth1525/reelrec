@@ -88,9 +88,9 @@ const NavSearch = ({ width, placeholder }) => {
             <span style={{ color: "white" }}>
               Release date: {option.release_date}
             </span>
-            <div style={{ fontSize: "13px", color: "#ffffff" }}>
+            {/* <div className='overview'>
               {option.overview}
-            </div>
+            </div> */}
           </div>
         </li>
       )}

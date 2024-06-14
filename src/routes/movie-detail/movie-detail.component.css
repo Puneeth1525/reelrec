@@ -18,6 +18,10 @@
   /* .banner-image {
     height: 20%;
   } */
+
+  .movie-title {
+    font-size: 8vw;
+  }
   
   .movie-info {
     position: absolute;

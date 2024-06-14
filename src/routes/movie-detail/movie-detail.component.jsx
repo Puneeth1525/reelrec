@@ -1,5 +1,3 @@
-// movie-detail.component.jsx
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -18,7 +16,7 @@ const MovieDetail = () => {
   const [crew, setCrew] = useState([]);
   const [providers, setProviders] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [countries, setCountries] = useState([]);
+  const [videos, setVideos] = useState([])
 
   const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MzViZWFjNGU3N2JmNjhlNDJiMTIyZDhlNTU1MDRmMSIsInN1YiI6IjY2NjM4NDQzNjU2ZWQ3NjYwMDMwMjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VrtNLvUqmEowHSwWw-LZpRz4QOmoPdr9KAROczUKUR4`;
 
@@ -55,17 +53,19 @@ const MovieDetail = () => {
           }
         );
 
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        const countriesData = response.data.reduce((acc, country) => {
-          acc[country.cca2] = country.name.common;
-          return acc;
-        }, {});
-
-        setCountries(countriesData);
+        const videosResponse = await axios.get(
+          `https://api.themoviedb.org/3/movie/${id}/videos`,
+          {
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
 
         setCast(creditsResponse.data.cast);
         setCrew(creditsResponse.data.crew);
         setProviders(providersResponse.data.results);
+        setVideos(videosResponse.data.results);
 
         setMovie({
           ...movieResponse.data,
@@ -103,14 +103,22 @@ const MovieDetail = () => {
           alt={movie.title}
         />
         <div className="movie-info">
-          <h1>{movie.title}</h1>
+          <p className="movie-title">{movie.title}</p>
           <button className="play-button">▶ Play</button>
           <button className="wishlist-button">+ Add to Wish List</button>
         </div>
       </div>
       <div className="movie-details">
-        <Grid container spacing={2} sx={{ flexGrow: 1 }}>
-          <Grid xs={8}>
+
+
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{ flexGrow: 1 }}
+        >
+          
+            <Grid sm={6}>
             <div className="movie-meta">
               <p>{`Language: ${movie.original_language} | ${new Date(
                 movie.release_date
@@ -119,8 +127,10 @@ const MovieDetail = () => {
               }mins`}</p>
             </div>
             <p className="movie-description">{movie.overview}</p>
-          </Grid>
-          <Grid xs={4}>
+            </Grid>
+
+            <Grid sm={1}>
+
             <div className="movie-genre">
               <span>Genre</span>
               {movie.genres.map((genre) => (
@@ -133,9 +143,42 @@ const MovieDetail = () => {
               <span>Rating</span>
               <span className="rating-tag">{movie.adult ? "18+" : "PG"}</span>
             </div>
-          </Grid>
+
+            </Grid>
+        
         </Grid>
       </div>
+      <div className="cast-section">
+          <h2>Available on</h2>
+          <div className="country-dropdown">
+            <Select
+              placeholder="Select a country"
+              value={selectedCountry}
+              onChange={(event, newValue) => setSelectedCountry(newValue)}
+            >
+              {Object.keys(providers).map((countryCode) => (
+                <Option key={countryCode} value={countryCode}>
+                  <span><b>{countryNames[countryCode]}</b>- {countryCode}</span>
+                </Option>
+              ))}
+            </Select>
+          </div>
+          {selectedCountry &&
+            providers[selectedCountry] &&
+            providers[selectedCountry].flatrate && (
+              <div className="cast-list">
+                {providers[selectedCountry].flatrate.map((provider) => (
+                  <div key={provider.provider_id} className="cast-member">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w100_and_h100_face${provider.logo_path}`}
+                      alt={provider.provider_name}
+                    />
+                    <p>{provider.provider_name}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+        </div>
       <div className="cast-section">
         <h2>Cast</h2>
         <div className="cast-list">
@@ -174,38 +217,6 @@ const MovieDetail = () => {
               </b>
             </div>
           ))}
-        </div>
-
-        <div className="cast-section">
-          <h2>Available on</h2>
-          <div className="country-dropdown">
-            <Select
-              placeholder="Select a country"
-              value={selectedCountry}
-              onChange={(event, newValue) => setSelectedCountry(newValue)}
-            >
-              {Object.keys(providers).map((countryCode) => (
-                <Option key={countryCode} value={countryCode}>
-                <b>{countryNames[countryCode]}</b>- {countryCode}
-                </Option>
-              ))}
-            </Select>
-          </div>
-          {selectedCountry &&
-            providers[selectedCountry] &&
-            providers[selectedCountry].flatrate && (
-              <div className="cast-list">
-                {providers[selectedCountry].flatrate.map((provider) => (
-                  <div key={provider.provider_id} className="cast-member">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w100_and_h100_face${provider.logo_path}`}
-                      alt={provider.provider_name}
-                    />
-                    <p>{provider.provider_name}</p>
-                  </div>
-                ))}
-              </div>
-            )}
         </div>
       </div>
     </div>

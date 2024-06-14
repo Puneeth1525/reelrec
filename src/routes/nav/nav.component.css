@@ -3,16 +3,20 @@
     top: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
     z-index: 10;
     padding: 10px 0;
+    justify-content: center;
   }
   
   .nav .ul {
     list-style: none;
     display: flex;
     gap: 20px;
+  }
+
+  .nav-options {
+    margin: 2%;
   }
   
   .nav .ul .li .a {
