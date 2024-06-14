@@ -6,6 +6,10 @@ import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Grid from "@mui/joy/Grid";
 import countryNames from "../../countryCodes";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -96,6 +100,69 @@ const MovieDetail = () => {
   if (error) {
     return <div>Error loading movie details.</div>;
   }
+
+  const castSliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 13,
+    slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 9,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+  const crewSliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 13,
+    slidesToScroll: 3,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 9,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
 
   return (
     <div className="container">
@@ -189,8 +256,8 @@ const MovieDetail = () => {
           {videos.map((member) => (
             <div key={member.id} className="cast-member">
             <iframe
-                width="560"
-                height="315"
+                width="360"
+                height="180"
                 src={`https://www.youtube.com/embed/${member.key}`}
                 title={member.name}
                 frameBorder="0"
@@ -207,7 +274,7 @@ const MovieDetail = () => {
 
       <div className="cast-section">
         <h2>Cast</h2>
-        <div className="cast-list">
+        <Slider {...castSliderSettings}>
           {cast.map((member) => (
             <div key={member.id} className="cast-member">
               <img
@@ -220,11 +287,13 @@ const MovieDetail = () => {
               </b>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
+
+
       <div className="cast-section">
         <h2>Crew</h2>
-        <div className="cast-list">
+        <Slider {...crewSliderSettings}>
           {crew.map((member) => (
             <div key={member.id} className="cast-member">
               {member.profile_path ? (
@@ -243,7 +312,7 @@ const MovieDetail = () => {
               </b>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </div>
   );
