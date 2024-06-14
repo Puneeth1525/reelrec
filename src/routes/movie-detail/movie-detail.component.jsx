@@ -82,6 +82,9 @@ const MovieDetail = () => {
     fetchMovieDetails();
   }, [id]);
 
+  const remainingVideos = videos.slice(1);
+
+
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
   };
@@ -104,8 +107,8 @@ const MovieDetail = () => {
         />
         <div className="movie-info">
           <p className="movie-title">{movie.title}</p>
-          <button className="play-button">▶ Play</button>
-          <button className="wishlist-button">+ Add to Wish List</button>
+          <button className="play-button">+ Add to</button>
+          <button className="wishlist-button">Rate</button>
         </div>
       </div>
       <div className="movie-details">
@@ -179,6 +182,29 @@ const MovieDetail = () => {
               </div>
             )}
         </div>
+
+        <div className="cast-section">
+        <h2>Videos</h2>
+        <div className="cast-list">
+          {videos.map((member) => (
+            <div key={member.id} className="cast-member">
+            <iframe
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${member.key}`}
+                title={member.name}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+              <b>
+                <p>{member.name}</p>
+              </b>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <div className="cast-section">
         <h2>Cast</h2>
         <div className="cast-list">
