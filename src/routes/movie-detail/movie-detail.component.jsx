@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase-config';
+import { signInWithGoogle, signInWithMicrosoft } from '../../signin';
+import AddToDrawer from "../../components/drawer/drawer.component";
 import "./movie-detail.component.css";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
@@ -12,6 +16,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const MovieDetail = () => {
+  const [login_token, setToken] = useState(null);
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -21,6 +26,9 @@ const MovieDetail = () => {
   const [providers, setProviders] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [videos, setVideos] = useState([])
+  const [visibleVideos, setVisibleVideos] = useState(3);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [user] = useAuthState(auth);
 
   const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MzViZWFjNGU3N2JmNjhlNDJiMTIyZDhlNTU1MDRmMSIsInN1YiI6IjY2NjM4NDQzNjU2ZWQ3NjYwMDMwMjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VrtNLvUqmEowHSwWw-LZpRz4QOmoPdr9KAROczUKUR4`;
 
@@ -66,6 +74,13 @@ const MovieDetail = () => {
           }
         );
 
+        if (user) {
+          user.getIdToken().then(idToken => {
+            setToken(idToken);
+          });
+        }
+    
+
         setCast(creditsResponse.data.cast);
         setCrew(creditsResponse.data.crew);
         setProviders(providersResponse.data.results);
@@ -91,6 +106,17 @@ const MovieDetail = () => {
 
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
+  };
+
+  const handleAddTo = () => {
+    if (!user) {
+      signInWithGoogle();
+    } else {
+      setDrawerOpen(true);
+      console.log('User is logged in:', user);
+      console.log('ID Token:', token);
+      console.log(`Adding ${movie.title} to ${user.email}'s list`);
+    }
   };
 
   if (loading) {
@@ -174,7 +200,7 @@ const MovieDetail = () => {
         />
         <div className="movie-info">
           <p className="movie-title">{movie.title}</p>
-          <button className="play-button">+ Add to</button>
+          <button onClick={handleAddTo} className="play-button">+ Add to</button>
           <button className="wishlist-button">Rate</button>
         </div>
       </div>
@@ -314,6 +340,7 @@ const MovieDetail = () => {
           ))}
         </Slider>
       </div>
+      <AddToDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} movie={movie} />
     </div>
   );
 };
