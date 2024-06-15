@@ -28,9 +28,10 @@ const MovieDetail = () => {
   const [videos, setVideos] = useState([])
   const [visibleVideos, setVisibleVideos] = useState(3);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [user] = useAuthState(auth);
+  const [user, loadingAuth, errorAuth] = useAuthState(auth); // Ensure correct usage of useAuthState
 
   const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MzViZWFjNGU3N2JmNjhlNDJiMTIyZDhlNTU1MDRmMSIsInN1YiI6IjY2NjM4NDQzNjU2ZWQ3NjYwMDMwMjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VrtNLvUqmEowHSwWw-LZpRz4QOmoPdr9KAROczUKUR4`;
+  let authFlag = true;
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -74,7 +75,8 @@ const MovieDetail = () => {
           }
         );
 
-        if (user) {
+        if (user && authFlag) {
+          authFlag = false; // Prevent further executions
           user.getIdToken().then(idToken => {
             setToken(idToken);
           });
@@ -108,13 +110,12 @@ const MovieDetail = () => {
     setSelectedCountry(event.target.value);
   };
 
-  const handleAddTo = () => {
+  const handleAddTo = async () => {
     if (!user) {
-      signInWithGoogle();
+      await signInWithGoogle();
     } else {
       setDrawerOpen(true);
       console.log('User is logged in:', user);
-      console.log('ID Token:', token);
       console.log(`Adding ${movie.title} to ${user.email}'s list`);
     }
   };
