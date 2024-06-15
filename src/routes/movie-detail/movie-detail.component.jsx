@@ -79,6 +79,32 @@ const MovieDetail = () => {
             setToken(idToken);
           });
         }
+
+        console.log("user: ",user)
+
+    console.log('User signed in with Google:', user.email, user.uid);
+
+    // Make a POST request to your API with user data
+    const apiUrl = 'http://18.190.29.212:3000/users';
+    const requestBody = {
+      email: user.email,
+      uid: user.uid
+    };
+
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestBody)
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to send user data to API');
+    }
+
+    console.log('User data sent to API successfully');
+
     
 
         setCast(creditsResponse.data.cast);
@@ -340,7 +366,7 @@ const MovieDetail = () => {
           ))}
         </Slider>
       </div>
-      <AddToDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} movie={movie} />
+      <AddToDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} movie={movie} user={user ? user : null} />
     </div>
   );
 };

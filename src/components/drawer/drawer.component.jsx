@@ -1,5 +1,5 @@
 // src/components/AddToDrawer/AddToDrawer.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/joy/Box';
 import Drawer from '@mui/joy/Drawer';
 import List from '@mui/joy/List';
@@ -12,8 +12,35 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
+import axios from 'axios'
 
-const AddToDrawer = ({ open, onClose, movie }) => {
+const AddToDrawer = ({ open, onClose, movie, user }) => {
+
+    const [collections, setCollections] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchCollections = async () => {
+          try {
+            const response = await axios.get(`http://18.190.29.212:3000/api/users/${user.uid}`);
+            setCollections(response.data.collections);
+            setLoading(false);
+          } catch (error) {
+            setError(error.message);
+            setLoading(false);
+          }
+        };
+    
+        if (open && user) {
+          fetchCollections();
+        }
+      }, [open, user]);
+
+      
+    
+      console.log("collectioins",collections)
+
   return (
     <Drawer
       anchor="bottom"
