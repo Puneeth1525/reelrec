@@ -1,0 +1,12 @@
+.chip {
+    align-items: end;
+    justify-content: end;
+}
+
+.colCard {
+    width: 100%;
+}
+
+.fullWidth {
+    width: 100%;
+}
