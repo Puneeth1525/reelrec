@@ -6,7 +6,6 @@ import { auth } from '../../firebase-config';
 import { signInWithGoogle, signInWithMicrosoft } from '../../signin';
 import AddToDrawer from "../../components/drawer/drawer.component";
 import "./movie-detail.component.css";
-import MetaComponent from "../../components/metadata/metadata.component";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import Grid from "@mui/joy/Grid";
@@ -221,13 +220,6 @@ const MovieDetail = () => {
 
   return (
     <div className="container">
-      {movie && (
-        <MetaComponent
-          title={movie.title || ""}
-          description={movie.overview || ""}
-          image={movie.backdrop_path ? `https://image.tmdb.org/t/p/w1280${movie.backdrop_path}` : ""}
-        />
-      )}
 
       <div className="movie-banner">
         <img
