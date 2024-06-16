@@ -3,8 +3,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithRedirect,
-  onAuthStateChanged,
-  getRedirectResult
+  onAuthStateChanged
 } from 'firebase/auth';
 import { auth, googleProvider, microsoftProvider } from './firebase-config';
 
@@ -65,21 +64,6 @@ const handleAuthStateChanged = async (user) => {
     }
   }
 };
-
-// Handle the result of the redirect
-const handleRedirectResult = async () => {
-  try {
-    const result = await getRedirectResult(auth);
-    if (result.user) {
-      handleAuthStateChanged(result.user);
-    }
-  } catch (error) {
-    console.error('Error handling redirect result', error);
-  }
-};
-
-// Call handleRedirectResult when the script is loaded
-handleRedirectResult();
 
 onAuthStateChanged(auth, handleAuthStateChanged);
 
