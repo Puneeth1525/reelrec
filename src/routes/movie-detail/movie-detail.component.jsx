@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "../../contexts/user.context";
 import { useParams } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { getRedirectResult } from 'firebase/auth';
+
 import { auth } from '../../firebase-config';
 import { signInWithGoogle, signInWithMicrosoft } from '../../signin';
 import AddToDrawer from "../../components/drawer/drawer.component";
@@ -13,7 +16,7 @@ import countryNames from "../../countryCodes";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import VideoPlayer from "../../components/video-player/video-player.component";
 
 const MovieDetail = () => {
   const [login_token, setToken] = useState(null);
@@ -26,9 +29,11 @@ const MovieDetail = () => {
   const [providers, setProviders] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [videos, setVideos] = useState([])
+  const [s3VideoUrl, setS3VideoUrl] = useState(null);
   const [visibleVideos, setVisibleVideos] = useState(3);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [user, loadingAuth, errorAuth] = useAuthState(auth); // Ensure correct usage of useAuthState
+
 
   const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1MzViZWFjNGU3N2JmNjhlNDJiMTIyZDhlNTU1MDRmMSIsInN1YiI6IjY2NjM4NDQzNjU2ZWQ3NjYwMDMwMjUzMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VrtNLvUqmEowHSwWw-LZpRz4QOmoPdr9KAROczUKUR4`;
   let authFlag = true;
@@ -109,11 +114,11 @@ const MovieDetail = () => {
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
   };
-
+  
   const handleAddTo = async () => {
     if (!user) {
       await signInWithGoogle();
-    } else {
+      } else {
       setDrawerOpen(true);
       console.log('User is logged in:', user);
       console.log(`Adding ${movie.title} to ${user.email}'s list`);
@@ -242,6 +247,20 @@ const MovieDetail = () => {
           </Grid>
         </Grid>
       </div>
+
+      {/* <div className="cast-section">
+        <h2>Related Video</h2>
+        <VideoPlayer videoSrc="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" />
+      </div> */}
+
+      {id === "332831" && (
+        <div className="cast-section">
+          <h2>Related Video</h2>
+          <VideoPlayer videoSrc="https://reelrec.s3.us-east-2.amazonaws.com/reels/Yevade_Subramanyam.mkv" />
+        </div>
+      )}
+
+
       <div className="cast-section">
         <h2>Available on</h2>
         <div className="country-dropdown">
