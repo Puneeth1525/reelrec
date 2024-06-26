@@ -20,6 +20,10 @@ const Nav = () => {
           <li className="li nav-options">
             <Link className="a active" to="/">Browse</Link>
           </li>
+          <li>
+          <Link to="/geolocation">Geolocation</Link>
+          </li>
+
           <li className="li search-bar">
             <NavSearch width="100%" placeholder="Search for movies..." />
           </li>

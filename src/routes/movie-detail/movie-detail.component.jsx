@@ -260,7 +260,19 @@ const MovieDetail = () => {
         </div>
       )}
 
+      {id === "1381" && (
+        <div className="cast-section">
+          <h2>Related Video</h2>
+          {/* <VideoPlayer videoSrc="magnet:?xt=urn:btih:eb557f482eb31f9a8e4729cdb4f1f44c57c7244c&dn=The+Fountian+(2004)&tr=http%3A%2F%2Ftracker.yify-torrents.com%2Fannounce&tr=udp%3A%2F%2Ftracker.yify-torrents.com%2Fannounce&tr=http%3A%2F%2Ftracker.thepiratebay.org%2Fannounce&tr=udp%3A%2F%2Ftracker.thepiratebay.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.publicbt.com%2Fannounce&tr=http%3A%2F%2Fgenesis.1337x.org%3A1337%2Fannounce&tr=http%3A%2F%2Fexodus.1337x.org%2Fannounce&tr=http%3A%2F%2Ftracker.ilibr.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bitreactor.to%3A2710%2Fannounce&tr=http%3A%2F%2Fdenis.stalker.h3q.com%2Fannounce&tr=http%3A%2F%2Ffree.btr.kz%3A8888%2Fannounce&tr=http%3A%2F%2Fsombarato.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.ilibr.org%2Fannounce&tr=http%3A%2F%2Fpow7.com%2Fannounce&tr=http%3A%2F%2Finferno.demonoid.me%3A3415%2Fannounce" data-path="The Fountian (2004)/The.Fountian.Br.x264.YIFY.mkv" /> */}
+      <video controls src="magnet:?xt=urn:btih:eb557f482eb31f9a8e4729cdb4f1f44c57c7244c&dn=The+Fountian+(2004)&tr=http%3A%2F%2Ftracker.yify-torrents.com%2Fannounce&tr=udp%3A%2F%2Ftracker.yify-torrents.com%2Fannounce&tr=http%3A%2F%2Ftracker.thepiratebay.org%2Fannounce&tr=udp%3A%2F%2Ftracker.thepiratebay.org%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80%2Fannounce&tr=http%3A%2F%2Ftracker.publicbt.com%2Fannounce&tr=http%3A%2F%2Fgenesis.1337x.org%3A1337%2Fannounce&tr=http%3A%2F%2Fexodus.1337x.org%2Fannounce&tr=http%3A%2F%2Ftracker.ilibr.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.bitreactor.to%3A2710%2Fannounce&tr=http%3A%2F%2Fdenis.stalker.h3q.com%2Fannounce&tr=http%3A%2F%2Ffree.btr.kz%3A8888%2Fannounce&tr=http%3A%2F%2Fsombarato.org%3A6969%2Fannounce&tr=http%3A%2F%2Ftracker.ilibr.org%2Fannounce&tr=http%3A%2F%2Fpow7.com%2Fannounce&tr=http%3A%2F%2Finferno.demonoid.me%3A3415%2Fannounce" data-path="The Fountian (2004)/The.Fountian.Br.x264.YIFY.mkv"></video>
+<script src="https://cdn.jsdelivr.net/npm/@webtor/player-sdk-js/dist/index.min.js" charset="utf-8" async></script>
+        </div>
+      )}
 
+      https://abra--7537cb52.api.nocturnal-narwhal.buzz/ba3e217c0963b169ec383888f7811aee99abed7e/The%20Fountain%20(2006)%20%5B1080p%5D%20%5BBluRay%5D%20%5B5.1%5D%20%5BYTS.MX%5D%2FThe.Fountain.2006.1080p.BluRay.x264.AAC5.1-%5BYTS.MX%5D.mp4~vod/hls/617bd7644c9acf4dc4274c48724c515f/index.m3u8?user-id=d3b56be3aed302212653b3529ffd93ef&download-id=480e78136c91030385704431f78c2535&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZ2VudCI6Ik1vemlsbGEvNS4wIChNYWNpbnRvc2g7IEludGVsIE1hYyBPUyBYIDEwXzE1XzcpIEFwcGxlV2ViS2l0LzUzNy4zNiAoS0hUTUwsIGxpa2UgR2Vja28pIENocm9tZS8xMjYuMC4wLjAgU2FmYXJpLzUzNy4zNiIsInJlbW90ZUFkZHJlc3MiOiIxNzMuMTg2LjEzLjE0MyIsImRvbWFpbiI6Inl0cy5teCIsImV4cCI6MTcxOTcxODA5OCwic2Vzc2lvbklEIjoiMVdnUnF5TlRjc1ZfUXM0SnpMTGJXeTlUcEJwLVBQdnkiLCJyYXRlIjoiMTBNIiwicm9sZSI6Im5vYm9keSJ9.FqI1YwhLxZmvyqAi5pLjPKmDgKlioEv7NWRoOPWSOko&api-key=8acbcf1e-732c-4574-a3bf-27e6a85b86f1
+
+
+  
       <div className="cast-section">
         <h2>Available on</h2>
         <div className="country-dropdown">
