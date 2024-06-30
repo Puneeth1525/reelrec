@@ -17,7 +17,7 @@ const Geolocation = () => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
 
-    fetch('http://18.190.29.212:3000/location', { // Corrected URL with http://
+    fetch('http://18.190.29.212:3000/location', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -10,7 +10,7 @@ const App = () => {
       <Route path="/" element={<Nav />}>
         <Route index element={<Browse />} />
         <Route path="home/:id" element={<MovieDetail />} />
-        <Route path="geolocation" element={<Geolocation />} />
+        {/* <Route path="geolocation" element={<Geolocation />} /> */}
       </Route>
     </Routes>
   );
